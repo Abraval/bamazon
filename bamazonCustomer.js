@@ -21,14 +21,14 @@ connection.connect(function(err) {
 });
 
 function display() {
-  console.log ("****************************************\n")
+  console.log("****************************************\n");
   console.log("Available goods:\n");
-  console.log ("****************************************\n")
+  console.log("****************************************\n");
   connection.query(
     "SELECT item_id, product_name, stock_quantity, price_$ FROM products",
     function(err, res) {
       if (err) throw err;
-      
+
       console.table(res);
 
       purchase();
@@ -78,9 +78,9 @@ function purchase() {
         // console.log(chosenItem.item_id);
 
         if (chosenItem.stock_quantity < parseInt(answer.howMany)) {
-          console.log ("****************************************\n")
+          console.log("****************************************\n");
           console.log("Insufficient quantity!\n");
-          console.log ("****************************************\n")
+          console.log("****************************************\n");
           inquirer
             .prompt([
               {
@@ -94,9 +94,9 @@ function purchase() {
               if (answer.anotherPurchase) {
                 display();
               } else {
-                console.log ("****************************************\n")
+                console.log("****************************************\n");
                 console.log("See you later!\n");
-                console.log ("****************************************\n")
+                console.log("****************************************\n");
                 connection.end();
               }
             });
@@ -104,25 +104,39 @@ function purchase() {
           var newStock =
             parseInt(chosenItem.stock_quantity) - parseInt(answer.howMany);
 
+          var total = Math.floor(
+            parseInt(answer.howMany) * parseFloat(chosenItem.price_$)
+          );
+
           // console.log(newStock)
-          // console.log(chosenItem)
+          // console.log(chosenItem.department_name);
 
           connection.query(
             "UPDATE products SET ? WHERE ?",
             [
               {
-                stock_quantity: newStock
+                stock_quantity: newStock,
+                product_sales: chosenItem.product_sales+total
               },
               {
                 item_id: chosenItem.item_id
               }
             ],
+           
+              // "UPDATE departments SET ? WHERE ?",
+              //   [
+              //     {
+              //       product_sales: products.product_sales
+                 
+              //     },
+              //     {
+              //       department_name: chosenItem.department_name
+              //     }
+              //   ],
+
             function(error) {
               if (error) throw err;
 
-              var total = Math.floor(
-                parseInt(answer.howMany) * parseFloat(chosenItem.price_$)
-              );
               console.log(
                 "You successfuly purchased " +
                   answer.howMany +
