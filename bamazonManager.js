@@ -30,9 +30,10 @@ function start() {
           "View Products for Sale",
           "View Low Inventory",
           "Add to Inventory",
-          "Add New Product"
+          "Add New Product",
+          "Exit"
         ],
-        message: "What would you like to do?"
+        message: "What would you like to do now?"
       }
     ])
     .then(function(answer) {
@@ -42,15 +43,21 @@ function start() {
         lowInventory();
       } else if (answer.action === "Add to Inventory") {
         addToInventory();
-      } else {
+      } else if (answer.action === "Add New Product") {
         addNewProduct();
+      } else {
+        connection.end();
       }
     });
 }
 function viewProducts() {
   connection.query("SELECT * FROM products", function(err, results) {
     if (err) throw err;
+    console.log("****************************************\n");
+    console.log("Available goods:\n");
+    console.log("****************************************\n");
     console.table(results);
+    start();
   });
 }
 function lowInventory() {
@@ -59,7 +66,11 @@ function lowInventory() {
     results
   ) {
     if (err) throw err;
+    console.log("****************************************\n");
+    console.log("Products with Low Inventory:\n");
+    console.log("****************************************\n");
     console.table(results);
+    start();
   });
 }
 
@@ -100,6 +111,7 @@ function addNewProduct() {
         function(err, results) {
           if (err) throw err;
           console.table("Item " + answer.item + " added successfully!");
+          viewProducts();
         }
       );
     });
@@ -135,7 +147,8 @@ function addToInventory() {
             chosenItem = results[i];
           }
         }
-        var newStock = parseInt(answer.newStock)+parseInt(chosenItem.stock_quantity);
+        var newStock =
+          parseInt(answer.newStock) + parseInt(chosenItem.stock_quantity);
 
         connection.query(
           "UPDATE products SET ? WHERE ?",
@@ -144,12 +157,17 @@ function addToInventory() {
               stock_quantity: newStock
             },
             {
-                item_id: chosenItem.item_id
+              item_id: chosenItem.item_id
             }
           ],
           function(error) {
             if (error) throw err;
-            console.table("Inventory of " + chosenItem.product_name + " updated successfully!");
+            console.table(
+              "Inventory of " +
+                chosenItem.product_name +
+                " updated successfully!"
+            );
+            viewProducts();
           }
         );
       });

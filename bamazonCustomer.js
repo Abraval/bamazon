@@ -21,11 +21,14 @@ connection.connect(function(err) {
 });
 
 function display() {
+  console.log ("****************************************\n")
   console.log("Available goods:\n");
+  console.log ("****************************************\n")
   connection.query(
     "SELECT item_id, product_name, stock_quantity, price_$ FROM products",
     function(err, res) {
       if (err) throw err;
+      
       console.table(res);
 
       purchase();
@@ -63,10 +66,10 @@ function purchase() {
         var chosenItem;
 
         // console.log(chosenItem.item_id)
-        if (typeof answer.howMany === "string") {
-          console.log("Please,pick a number!");
-          process.exit();
-        }
+        // if (typeof answer.howMany === "string") {
+        //   console.log("Please,pick a number!");
+        //   process.exit();
+        // }
         for (var i = 0; i < results.length; i++) {
           if (results[i].product_name === answer.whichItem) {
             chosenItem = results[i];
@@ -75,7 +78,9 @@ function purchase() {
         // console.log(chosenItem.item_id);
 
         if (chosenItem.stock_quantity < parseInt(answer.howMany)) {
-          console.log("Insufficient quantity!");
+          console.log ("****************************************\n")
+          console.log("Insufficient quantity!\n");
+          console.log ("****************************************\n")
           inquirer
             .prompt([
               {
@@ -85,11 +90,13 @@ function purchase() {
               }
             ])
             .then(function(answer) {
-              console.log(answer);
+              // console.log(answer);
               if (answer.anotherPurchase) {
                 display();
               } else {
-                console.log("See you later!");
+                console.log ("****************************************\n")
+                console.log("See you later!\n");
+                console.log ("****************************************\n")
                 connection.end();
               }
             });
@@ -112,14 +119,20 @@ function purchase() {
             ],
             function(error) {
               if (error) throw err;
+
               var total = Math.floor(
                 parseInt(answer.howMany) * parseFloat(chosenItem.price_$)
               );
               console.log(
-                "Purchase was successful! Your Total is: $" +
+                "You successfuly purchased " +
+                  answer.howMany +
+                  " " +
+                  chosenItem.product_name +
+                  ". Your Total is: $" +
                   total +
-                  "! Thank you!"
+                  ". Thank you!"
               );
+
               inquirer
                 .prompt([
                   {
@@ -129,7 +142,7 @@ function purchase() {
                   }
                 ])
                 .then(function(answer) {
-                  console.log(answer);
+                  // console.log(answer);
                   if (answer.anotherPurchase) {
                     display();
                   } else {
