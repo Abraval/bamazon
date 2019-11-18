@@ -105,21 +105,21 @@ You will be prompted to this screen:
 
 *Once there, pick what would you like to do
 
-> if you chose to _View Inventory_, you will see the current store inventory:
+> if you selected _View Products For Sale_, you will see the current store inventory:
 
 ![Image description](img/manager_2.png)
 
 
-> if you chose to _View Low Inventory_, you will see the list of products with low inventory:
+> if you selected _View Low Inventory_, you will see the list of products with low inventory:
 
 ![Image description](img/manager_3.png)
 
 
-> if you chose to _Add to Inventory_, you willbe asked which product you would like to update, how much would you like to add. Then application will display back to you the updated store inventory:
+> if you selected _Add to Inventory_, you willbe asked which product you would like to update, how much would you like to add. Then application will display back to you the updated store inventory:
 
 ![Image description](img/manager_4.png)
 
-> if you chose to _Add New Product_, you willbe asked for the name of new product, price, department and quantity. After the update goes through, application will display back to you the updated store inventory:
+> if you selected _Add New Product_, you willbe asked for the name of new product, price, department and quantity. After the update goes through, application will display back to you the updated store inventory:
 
 ![Image description](img/manager_5.png)
 
