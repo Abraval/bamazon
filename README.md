@@ -1,7 +1,6 @@
 
 ## ABOUT
-
-### Meet BAMAZON
+![Image description](img/BAMAZON.png)
 
 Bamazon is Amazon-like storefront node application. It will take in orders from customers and deplete stock from the store's inventory. 
 
