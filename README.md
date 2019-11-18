@@ -128,7 +128,7 @@ You will be prompted to this screen:
 ********
 WATCH DEMONSTRATION VIDEO HERE
 
-<a href="https://drive.google.com/file/d/1Cn_yqZSHWppXDJCHAHOeESxWovxc7eMS/view" target="_blank">BAMAZON Demo</a>
+<a href="https://drive.google.com/file/d/1Cn_yqZSHWppXDJCHAHOeESxWovxc7eMS/view"  target="_blank">BAMAZON Demo</a>
 
 ********
 Try it out and enjoy
