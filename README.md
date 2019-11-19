@@ -156,7 +156,7 @@ $ node bamazonSupervisor.js
 ********
 WATCH DEMONSTRATION VIDEO HERE
 
-<a href="https://drive.google.com/file/d/1Cn_yqZSHWppXDJCHAHOeESxWovxc7eMS/view"  target="_blank">BAMAZON Demo</a>
+<a href="https://drive.google.com/file/d/1vGmei0ngl8F_rBbr5wKhYClJbvcuFZnK/view"  target="_blank">BAMAZON Demo</a>
 
 ********
 Try it out and enjoy

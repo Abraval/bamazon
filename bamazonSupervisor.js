@@ -21,7 +21,7 @@ connection.connect(function(err) {
 });
 
 function display() {
-  connection.query("SELECT * FROM departments", function(err, results) {
+  connection.query("SELECT department_id, department_name, over_head_costs FROM departments", function(err, results) {
     if (err) throw err;
     console.log("****************************************\n");
     console.log("Total Sales:\n");
