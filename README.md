@@ -75,6 +75,7 @@ $ npm install dotenv
 $ node bamazonCustomer.js
 ```
 > - You will be prompted to this screen:
+
 ![Image description](img/customer_1.png)
 
 > - Pick an item you would like to purchase
@@ -123,6 +124,30 @@ $ node bamazonManager.js
 > if you selected _Add New Product_, you willbe asked for the name of new product, price, department and quantity. After the update goes through, application will display back to you the updated store inventory:
 
 ![Image description](img/manager_5.png)
+
+> - If you would like to exit the application, please select _Exit_.
+
+### TO USE _SUPERVISOR VIEW_ APPILCATION:
+
+> - Open the terminal in your root derictory. Once there, run this command:
+
+```sh
+$ node bamazonSupervisor.js
+```
+> - You will be prompted to this screen:
+
+![Image description](img/super_1.png)
+
+> - Once there, pick what would you like to do
+
+> if you selected _View Product Sales by Department_, you will be asked to select the department
+>after the selection is made, the app will display total sales and total profit in that department:
+
+![Image description](img/super_2.png)
+
+> if you selected _Add New Department_, you willbe asked for the name of the department and the over head costs. After the update goes through, application will display back to you the updated department list:
+
+![Image description](img/super_3.png)
 
 > - If you would like to exit the application, please select _Exit_.
 
