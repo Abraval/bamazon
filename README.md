@@ -4,31 +4,33 @@
 
 Bamazon is Amazon-like storefront node application. It will take in orders from customers and deplete stock from the store's inventory. 
 
-Consists of two applications: Customer View and Manager View.
+Consists of three applications: Customer View, Manager View and Supervisor View.
 
-#### Customer View will:
+#### Customer View will allow customer to:
 
-* Display all of the items available for sale
+ - View all of the items available for sale
 
-* Ask customer which item they would like to buy
+ - Select an item which they would like to buy
 
-* Ask how many units of the product they would like to buy
+ - Get alert if there is an insufficient quantity of the product they selected
 
-Once the customer has placed the order, application will check if the store has enough of the product to meet the customer's request.
-
-* If not, the app will alert the customer of insufficient quantity
-
-* If the store does have enough of the product, the app will fulfill the customer's order. By updating the SQL database to reflect the remaining quantity and showing the customer the total cost of their purchase.
+ - Purchase the product and see their total cost
 
 #### Manager View will allow the manager to:
 
-* View Products for Sale
+ - View Products for Sale
 
-* View Low Inventory
+ - View Low Inventory
 
-* Add to Inventory
+ - Add to Inventory
 
-* Add New Product
+ - Add New Product
+
+#### Supervisor View will allow the supervisor to:
+
+ - View Product Sales by Department
+ 
+  - Create New Department
 
 ## TECHNOLOGIES USED
 
@@ -67,17 +69,17 @@ $ npm install dotenv
 
 ### TO USE _CUSTOMER VIEW_ APPILCATION:
 
-* Open the terminal in your root derictory. Once there, run this command:
+> - Open the terminal in your root derictory. Once there, run this command:
 
 ```sh
 $ node bamazonCustomer.js
 ```
-You will be prompted to this screen:
+> - You will be prompted to this screen:
 ![Image description](img/customer_1.png)
 
-* Pick an item you would like to purchase
+> - Pick an item you would like to purchase
 
-* Enter the quantity
+> - Enter the quantity
 
 > if the store doesen't have enough of the product to meet the your request, you will get this alert:
 
@@ -87,22 +89,22 @@ You will be prompted to this screen:
 
 ![Image description](img/customer_3.png)
 
-* If you would like to make another purchase, press _N_ and you will be promted to the screen _Available goods_ with an updated inventory.
+> - If you would like to make another purchase, press _Y_ and you will be promted to the screen _Available goods_ with an updated inventory.
 
-*If you would like to exit, press _N_
+> - If you would like to exit, press _N_
 
 ### TO USE _MANAGER VIEW_ APPILCATION:
 
-* Open the terminal in your root derictory. Once there, run this command:
+> - Open the terminal in your root derictory. Once there, run this command:
 
 ```sh
 $ node bamazonManager.js
 ```
-You will be prompted to this screen:
+> - You will be prompted to this screen:
 
 ![Image description](img/manager_1.png)
 
-*Once there, pick what would you like to do
+> - Once there, pick what would you like to do
 
 > if you selected _View Products For Sale_, you will see the current store inventory:
 
@@ -122,7 +124,9 @@ You will be prompted to this screen:
 
 ![Image description](img/manager_5.png)
 
-* If you would like to exit the application, please select _Exit_.
+> - If you would like to exit the application, please select _Exit_.
+
+
 
 ********
 WATCH DEMONSTRATION VIDEO HERE

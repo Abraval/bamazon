@@ -58,6 +58,37 @@ function action() {
     });
 }
 
+function newDepartment() {
+  inquirer
+    .prompt([
+      {
+        name: "dept",
+        type: "input",
+        message: "Name of the department"
+      },
+
+      {
+        name: "overhead",
+        type: "input",
+        message: "What are ther over head coasts?"
+      }
+    ])
+    .then(function(answer) {
+      connection.query(
+        "INSERT INTO departments SET ?",
+        {
+          department_name: answer.dept,
+          over_head_costs: answer.overhead
+        },
+        function(err, results) {
+          if (err) throw err;
+          console.table("Department " + answer.dept + " added successfully!");
+          display();
+        }
+      );
+    });
+}
+
 function byDepartment() {
   connection.query("SELECT * FROM departments", function(err, results) {
     if (err) throw err;
@@ -73,7 +104,7 @@ function byDepartment() {
           }
           return choiceArray;
         },
-        message: "Which item would you like to purchase?"
+        message: "Which department would you like to see?"
       })
       .then(function(answer) {
         var chosenItem;
@@ -83,8 +114,23 @@ function byDepartment() {
           }
         }
         connection.query(
-          "SELECT department_name, over_head_costs, product_sales, total_profit FROM departments WHERE ?",
-          { department_name: chosenItem.department_name },
+          `SELECT 
+          departments.department_name, departments.over_head_costs, sum(products.product_sales) AS product_sales, 
+          (
+          CASE 
+            WHEN 
+              departments.over_head_costs > sum(products.product_sales) 
+            THEN 
+              departments.over_head_costs - sum(products.product_sales)
+            WHEN 
+              departments.over_head_costs < sum(products.product_sales) 
+            THEN 
+              ABS(departments.over_head_costs - sum(products.product_sales) ) 
+          END) AS total_profit 
+          FROM departments 
+          INNER JOIN products 
+          ON ? GROUP BY departments.department_name, departments.over_head_costs, departments.total_profit`,
+          { "departments.department_name": chosenItem.department_name },
           function(err, results) {
             if (err) throw err;
             console.log("\n****************************************\n");
@@ -93,9 +139,7 @@ function byDepartment() {
             console.table(results);
             action();
           }
-          
         );
-        
       });
   });
 }
